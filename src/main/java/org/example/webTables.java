@@ -71,25 +71,22 @@ public class webTables {
 
             Thread.sleep(1000);
             //accessing webtables
-           //List<WebElement> l = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/a[text()]"));
-           List<WebElement> ll = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[1]"));
-           List<WebElement> ll1 = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[2]"));
-           //List<WebElement> l1 = wb.findElements(By.xpath("//table/tbody/tr/td[2]/div[1]/span"));
-           //List<WebElement> l2 = wb.findElements(By.xpath("//table/tbody/tr/td[3]//span"));
-           //List<WebElement> l3 = wb.findElements(By.xpath("//table/tbody/tr/td[4]//span"));
-            List<WebElement> l = wb.findElements(By.xpath("//table/tbody/tr")); //generates a list of webelements with similar xpaths
+            List<WebElement> ll = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[1]")); //list of all sizes
+            List<WebElement> ll1 = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[2]")); //list of all colors
+            List<WebElement> l = wb.findElements(By.xpath("//table/tbody/tr")); //generates a list of webelements with similar xpaths in the table of cart page
 
             Map<Integer,WebElement> mcart = new HashMap<>();
 
             int j = 1;
             int i = 0;
+            //adds element of key which is j value and Webelement from list l into the map
            for(WebElement w : l) {
                mcart.put(j,w);
                j++;
            }
-
+           //iterate thru the map
            for(Map.Entry<Integer,WebElement>m: mcart.entrySet())
-           {
+           {//prints the table solves Question 1
                System.out.println(m.getKey() +"   "+ m.getValue().findElement(By.xpath("td[1]//div/div[2]/a[text()]")).getText() + "   " +
                        m.getValue().findElement(By.xpath("td[2]/div[1]/span")).getText() + "   "+ m.getValue().findElement(By.xpath("td[3]//span")).getText()
                        + "   " + m.getValue().findElement(By.xpath("td[4]//span")).getText());
@@ -97,11 +94,18 @@ public class webTables {
                System.out.println("    "+ll1.get(i).findElement(By.xpath("span[2]")).getText());
                System.out.println();
 
-
+               //prints the Total amount of product name taken as input
                webTable.totalAmount(product,m.getValue());
+
+               //removes item whose product name matches with the product name taken as input
                webTable.removeItem(product,m.getValue());
+
+
+               //removes item based on product name and color
                //webTable.removeItemBasedOnColor(product,"Brown",m.getValue(),ll1.get(i).findElement(By.xpath("span[2]")));
+               // or remove item based on product name and size
                //webTable.removeItemBasedOnSize(product,"S",m.getValue(),ll.get(i).findElement(By.xpath("span[2]")));
+               // or removes item based on product name and size and color
                //webTable.removeItemBasedOnEverything(product,"X","Black",m.getValue(),ll.get(i).findElement(By.xpath("span[2]")),ll1.get(i).findElement(By.xpath("span[2]")));
                i++;
 
