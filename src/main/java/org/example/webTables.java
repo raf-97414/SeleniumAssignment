@@ -104,10 +104,10 @@ public class webTables {
                System.out.println("    "+ll1.get(i).findElement(By.xpath("span[2]")).getText());
                System.out.println();
 
-               //prints the Total amount of product name taken as input
+               //Question 2 prints the Total amount of product name taken as input
                webTable.totalAmount(product,m.getValue());
 
-               //removes item whose product name matches with the product name taken as input
+               //Question 3 removes item whose product name matches with the product name taken as input
                webTable.removeItem(product,m.getValue());
 
 
