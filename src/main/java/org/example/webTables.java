@@ -58,23 +58,33 @@ public class webTables {
 
         public static void main(String[] args) throws InterruptedException {
             WebDriver wb = new ChromeDriver();
+            //Takes Product name to print total value and remove
             System.out.println("Enter Product name");
             Scanner sc = new Scanner(System.in);
             String product = sc.nextLine();
+
+            //goes to login page and logs in
             wb.get("https://demo.evershop.io/account/login");
             wb.findElement(By.name("email")).sendKeys("rafeliafernandes48@gmail.com");
             wb.findElement(By.cssSelector("input[type='password']")).sendKeys("Rafelia14041997@");
             wb.findElement(By.xpath("//button[@type='submit']")).click();
             Thread.sleep(1000);
+            //go to cart
             wb.findElement(By.xpath("//a[@href='/cart']")).click();
+
+            //to access removeItem() and totalValue()
             webTables webTable = new webTables();
 
             Thread.sleep(1000);
-            //accessing webtables
-            List<WebElement> ll = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[1]")); //list of all sizes
-            List<WebElement> ll1 = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[2]")); //list of all colors
-            List<WebElement> l = wb.findElements(By.xpath("//table/tbody/tr")); //generates a list of webelements with similar xpaths in the table of cart page
 
+            //accessing webtables
+            //generates a list of webelements with similar xpaths in the table of cart page
+            List<WebElement> l = wb.findElements(By.xpath("//table/tbody/tr"));
+            //list of all sizes
+            List<WebElement> ll = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[1]"));
+            //list of all colors
+            List<WebElement> ll1 = wb.findElements(By.xpath("//table/tbody/tr/td[1]//div/div[2]/div/ul/li[2]"));
+            //Question on Map to store value and webelements in l
             Map<Integer,WebElement> mcart = new HashMap<>();
 
             int j = 1;
@@ -107,22 +117,11 @@ public class webTables {
                //webTable.removeItemBasedOnSize(product,"S",m.getValue(),ll.get(i).findElement(By.xpath("span[2]")));
                // or removes item based on product name and size and color
                //webTable.removeItemBasedOnEverything(product,"X","Black",m.getValue(),ll.get(i).findElement(By.xpath("span[2]")),ll1.get(i).findElement(By.xpath("span[2]")));
+               //increments so that we can get size and color from ll and ll1 lists
                i++;
-
-
-
-
-
-
            }
-
-
-
-
+           //nullifies session
            wb.quit();
-
-
-
 
            }
 
