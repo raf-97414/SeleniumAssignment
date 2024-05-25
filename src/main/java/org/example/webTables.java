@@ -72,7 +72,7 @@ public class webTables {
             //go to cart
             wb.findElement(By.xpath("//a[@href='/cart']")).click();
 
-            //to access removeItem() and totalValue()
+            //to access removeItem() and totalAmount()
             webTables webTable = new webTables();
 
             Thread.sleep(1000);
